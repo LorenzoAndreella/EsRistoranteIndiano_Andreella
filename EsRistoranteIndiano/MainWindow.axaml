@@ -1,0 +1,92 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="450"
+        x:Class="EsRistoranteIndiano.MainWindow"
+        Title="EsRistoranteIndiano"
+        RequestedThemeVariant="Light"
+        Width="1150" Height="720" MinHeight="500" MinWidth="950"
+        WindowStartupLocation="CenterScreen"
+        Background="GhostWhite">
+
+    <ScrollViewer>
+        <Grid ColumnDefinitions="320,*,320" Margin="24" ColumnSpacing="24" RowSpacing="12"
+              RowDefinitions="Auto,Auto,Auto">
+
+            <TextBlock Text="Ristorante Indiano" FontWeight="Bold" FontSize="30" Grid.Row="0" Grid.Column="0"
+                       Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+            </TextBlock>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Spacing="12">
+                <TextBlock Text="Tavoli" FontWeight="Bold"></TextBlock>
+                <ListBox Name="lstTavoli" Background="White" Height="300" SelectionChanged="SelezioneTavoli">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Text="Numero di persone" />
+                <NumericUpDown Name="NmrPersone" Minimum="1" Maximum="20" Value="1" Increment="1"/>
+                <Button Name="btnOccupa" Content="OCCUPA TAVOLO" Click="OccupaTavolo" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Spacing="12">
+                <TextBlock Name="txtTavoloSelezionato" Text="Nessun tavolo selezionato" FontWeight="Bold"></TextBlock>
+                <ListBox Name="lstOrdine" Background="White" Height="300">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Name="txtTotale" FontWeight="Bold"></TextBlock>
+                <Button Name="btnRimuovi" Content="RIMUOVI PIATTO SELEZIONATO" Click="RimuoviPiatto" />
+                <Button Name="btnChiudiConto" Content="CHIUDI CONTO" Click="ChiudiConto" />
+
+                <Border Name="pnlConto" IsVisible="False" Background="White" BorderThickness="2"
+                        Padding="12">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Riepilogo conto" FontWeight="Bold" />
+                        <TextBlock Name="txtRiepilogo" TextWrapping="Wrap" />
+                        <Button Name="btnConferma" Content="CONFERMA PAGAMENTO" Click="ConfermaPagamento" />
+                        <Button Name="btnAnnulla" Content="ANNULLA" Click="AnnullaOrdine" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Name="txtMessaggio" Foreground="Red" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="1" Spacing="12">
+                <TextBlock Text="Menù" FontWeight="Bold"></TextBlock>
+                <ListBox Name="lstMenu" Background="White" Height="300">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Text="Quantità" />
+                <NumericUpDown Name="NmrQuantita" Minimum="1" Maximum="50" Value="1" Increment="1" FormatString="0" />
+                <Button Name="btnAggiungi" Content="AGGIUNGI ALL'ORDINE" Click="BtnAggiungiPiatto" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Spacing="12">
+                <TextBlock Text="Storico ordini conclusi" FontWeight="Bold"></TextBlock>
+                <ListBox Name="lstStorico" Background="White" Height="220">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Name="txtTotaleGiornata" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</Window>
